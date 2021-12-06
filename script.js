@@ -57,8 +57,7 @@ const pokeQuiz = [
 
 playGame();
 
-let timer = document.getElementById("timer")
-let timeLeft = 50;
+
 
 
 // Play game function
@@ -70,15 +69,6 @@ function playGame() {
     TextC.innerText = currentQuizData.c;
     TextD.innerText = currentQuizData.d;
     unChosen();
-
-    const setTimer = setInterval(function() {
-        timer.textContent = "Time Left: " + timeLeft + "s"
-        timeLeft -= 1;
-
-        if (timeLeft === 0 || pokeQuiz.length === currentQuestion+1) {
-            
-        }
-    }, 1000)
 }
 
 //  Selects answers
@@ -113,7 +103,18 @@ function text() {
    document.getElementById("hope").style.display = "none";
 }
 
+
+let timer = document.getElementById("timer")
+let timeLeft = 50;
+
+// Created the setInterval function
+let setTimer = setInterval(function() {
+    timer.textContent = "Time Left: " + timeLeft + "s"
+    timeLeft -= 1;
+}, 1000)
+
 // Loops through each question checking if they are correct or not
+// Added the setTimer function to subtract time if the question is answered incorrectly
 subBtn.addEventListener('click', () => {
     const answer = getSelected();
     console.log(answer)
@@ -122,15 +123,21 @@ subBtn.addEventListener('click', () => {
             console.log('You got it right')
             score++;
         } else {
+            timeLeft -= 5
+            console.log(timeLeft)
             console.log('You got it wrong')
         }
     }
     currentQuestion++;
         if (currentQuestion < pokeQuiz.length) {
             playGame();
+        if (timeLeft === 0) {
+            scoreText()
+        }
         } else {
             console.log('You finished the test')
             scoreText()
+            clearInterval(setTimer)
         }
 });  
 
