@@ -7,5 +7,5 @@ Langauges Used
 - Javascript
 
 ## Demo
-![QizDemo](./Develop/assets/Quiz.jpg)
-
+![QuizDemo](./Develop/assets/Quiz.jpg)
+Live Link: https://kevin4thehuynh.github.io/Pokemon-Quiz/
