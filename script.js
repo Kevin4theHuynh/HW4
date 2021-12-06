@@ -7,7 +7,6 @@ const TextD = document.getElementById('textD');
 const results = document.getElementById('.results');
 const answerEls = document.querySelectorAll('.chosen');
 
-
 let currentQuestion = 0;
 let score = 0;
 
@@ -58,6 +57,10 @@ const pokeQuiz = [
 
 playGame();
 
+let timer = document.getElementById("timer")
+let timeLeft = 50;
+
+
 // Play game function
 function playGame() {
     const currentQuizData = pokeQuiz[currentQuestion];
@@ -67,6 +70,15 @@ function playGame() {
     TextC.innerText = currentQuizData.c;
     TextD.innerText = currentQuizData.d;
     unChosen();
+
+    const setTimer = setInterval(function() {
+        timer.textContent = "Time Left: " + timeLeft + "s"
+        timeLeft -= 1;
+
+        if (timeLeft === 0 || pokeQuiz.length === currentQuestion+1) {
+            
+        }
+    }, 1000)
 }
 
 //  Selects answers
@@ -134,3 +146,5 @@ function scoreText() {
         console.log('it did not work')
     }
 }
+
+
